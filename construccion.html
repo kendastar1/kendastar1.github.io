@@ -1,0 +1,771 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construcción</title>
+<link rel="stylesheet" type="text/css" href="css/style4.css">
+<style>
+:root {
+  --primary-green: #4CAF50;
+  --dark-green: #2E7D32;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+  background: var(--dark-green);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.close-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.close-menu::before,
+.close-menu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--white);
+  top: 50%;
+  left: 0;
+}
+
+.close-menu::before {
+  transform: rotate(45deg);
+}
+
+.close-menu::after {
+  transform: rotate(-45deg);
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: #90EE90;
+}
+
+
+
+.btn {
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 2.5rem;
+  background: var(--white);
+  margin-top: -5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  opacity: 0;
+  animation: slideInFromLeft 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.feature-title {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.feature-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.feature-card:hover {
+  background: var(--primary-green);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+.feature-card:hover .feature-icon {
+  fill: var(--white);
+  transform: scale(1.2);
+}
+
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-subtitle {
+  color: var(--white);
+}
+
+.feature-card:hover path {
+  fill: var(--white);
+}
+
+.about-section {
+  padding: 5rem 2rem;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.about-text h2 {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.about-text h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.about-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.about-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.about-button {
+  padding: 1rem 2rem;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.about-image {
+  opacity: 0;
+  animation: slideInFromRight 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: var(--dark-green);
+    flex-direction: column;
+    padding: 80px 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .feature-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero {
+    padding: 1rem;
+    height: 100vh;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+  }
+
+  .about-section {
+    padding: 3rem 1rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-text {
+    text-align: center;
+    padding: 0;
+  }
+  
+  .about-text h2 {
+    font-size: 1.3rem;
+  }
+  
+  .about-text h3 {
+    font-size: 2rem;
+  }
+  
+  .about-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .about-button {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    min-height: 50px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-image {
+    width: 100%;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+    padding-top: 80px;
+  }
+  
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Simulador</div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links">
+      <div class="close-menu"></div>
+    <a href="index.html">Inicio</a>
+      <a href="construccion.html">Construcción</a>
+      <a href="Funcionamiento1.html">Funcionamiento</a>
+      <a href="Formula.html">Formula</a>
+      <a href="simulador.html">Simulador</a>
+      <!--<a href="integrantes.html">Integrantes</a>-->
+      
+    </div>
+  </nav>
+  <div class="page-transition"></div>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Cohete de Agua a Presión</h1>
+    <p>Una guía completa para construir tu propio cohete propulsado por agua</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="section">
+    <h2>Materiales Necesarios</h2>
+    <div class="materials-list">
+      <div class="material-card">
+        <h3>Básicos</h3>
+        <ul>
+          <li>Botella de plástico (1.5 a 2 litros) opcional</li>
+          <li>Tapón de corcho o goma</li>
+          <li>Válvula de neumático de bicicleta (opcional)</li>
+          <li>Bomba de aire</li>
+        </ul>
+      </div>
+      <div class="material-card">
+        <h3>Estructura</h3>
+        <ul>
+          <li>Cartón</li>
+          <li>Cinta adhesiva resistente</li>
+          <li>Tijeras</li>
+          <li>Pegamento resistente al agua</li>
+        </ul>
+      </div>
+      <div class="material-card">
+        <h3>Opcionales</h3>
+        <ul>
+          <li>Pintura en aerosol</li>
+          <li>Decoraciones</li>
+          <li>Base de lanzamiento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Instrucciones de Construcción</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-content">
+          <h3>Preparación de la Botella</h3>
+          <p>Limpiar y secar completamente la botella. Asegurarse de que no tenga daños ni grietas. La botella será el cuerpo principal del cohete.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Botella de plástico limpia de 2 litros siendo inspeccionada para construcción de cohete, fotografía instructiva" src="imagenes/botellon.jpg" width="800" height="200">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Sistema de Propulsión</h3>
+          <p>Hacer un agujero en el centro del tapón del tamaño de la válvula de la bicicleta. Insertar la válvula y sellar bien con pegamento resistente al agua.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Válvula de bicicleta siendo insertada en tapón de corcho, primer plano detallado" src="imagenes/tapa.jpg" width="800" height="200">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Aletas Estabilizadoras</h3>
+          <p>Cortar tres o cuatro aletas triangulares del cartón corrugado. Las dimensiones recomendadas son 15cm de base y 10cm de altura. Pegarlas equidistantes alrededor de la base de la botella.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Aletas de cartón triangulares siendo pegadas a la botella, vista de proceso de construcción" src="imagenes/carton.jpg" width="800" height="200">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Punta del Cohete</h3>
+          <p>Crear un cono con cartón para la punta del cohete. Debe encajar perfectamente en la parte superior de la botella. Sellar con cinta adhesiva resistente.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Cono de cartón siendo ajustado en la parte superior de la botella, fotografía del proceso" src="imagenes/cono.jpg" width="800" height="200">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-content">
+          <h3>Ensamblaje Final</h3>
+          <p>Asegurar todas las piezas con cinta adhesiva resistente. Verificar que no haya fugas en ninguna unión. Opcionalmente, pintar y decorar el cohete.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Cohete de agua completamente ensamblado y decorado, fotografía del producto final" src="imagenes/botella.jpg" width="800" height="200">
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-content">
+          <h3>Lanzamiento</h3>
+          <p>Conecta la bomba de aire a la válvula de la bicicleta o del auto. Asegúrate de que todo esté bien ajustado y añade la cantidad adecuada de agua para el lanzamiento.</p>
+        </div>
+        <div class="step-image">
+          <img alt="Cono de cartón siendo ajustado en la parte superior de la botella, fotografía del proceso" src="imagenes/bomba.jpg" width="800" height="200">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section safety-section">
+    <div class="circle-container"></div>
+    <h2>Consejos de Seguridad</h2>
+    <div class="safety-timeline">
+      <div class="safety-item">
+        <div class="safety-content">
+          <h3>Área de Lanzamiento</h3>
+          <p>Siempre lanzar en áreas abiertas y despejadas</p>
+        </div>
+      </div>
+      
+      <div class="safety-item">
+        <div class="safety-content">
+          <h3>Distancia</h3>
+          <p>Mantener una distancia segura durante el lanzamiento</p>
+        </div>
+      </div>
+      
+      <div class="safety-item">
+        <div class="safety-content">
+          <h3>Presión</h3>
+          <p>No exceder los 500 kpa de presión</p>
+        </div>
+      </div>
+      
+      <div class="safety-item">
+        <div class="safety-content">
+          <h3>Protección</h3>
+          <p>Usar protección ocular</p>
+        </div>
+      </div>
+      
+      <div class="safety-item">
+        <div class="safety-content">
+          <h3>Dirección</h3>
+          <p>No apuntar el cohete hacia personas o animales</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    document.body.style.overflow = 'auto';
+  }, 1500);
+
+  const container = document.createElement('div');
+  container.className = 'circle-container';
+  document.querySelector('.safety-section').prepend(container);
+
+  // Create more circles initially
+  for (let i = 0; i < 20; i++) {
+    createCircle(container);
+  }
+
+  // Create new circles more frequently
+  setInterval(() => createCircle(container), 1000);
+});
+
+function createCircle(container) {
+  const circle = document.createElement('div');
+  circle.className = 'circle';
+  
+  // Random size between 20 and 80px
+  const size = Math.random() * 60 + 20;
+  circle.style.width = `${size}px`;
+  circle.style.height = `${size}px`;
+  
+  // Random position along the bottom
+  circle.style.left = `${Math.random() * 100}%`;
+  circle.style.bottom = '-100px';
+  
+  // Add random delay
+  circle.style.animationDelay = `${Math.random() * 5}s`;
+  
+  container.appendChild(circle);
+  
+  // Remove circle after animation completes
+  circle.addEventListener('animationend', () => {
+    circle.remove();
+  });
+}
+</script>
+
+  
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const closeMenu = document.querySelector('.close-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(46, 125, 50, 0.95)';
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.background = 'var(--dark-green)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    const observerOptions = {
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.about-text h2, .about-text h3, .about-text p, .about-stats, .about-button, .about-image');
+
+    animatedElements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</body></html>

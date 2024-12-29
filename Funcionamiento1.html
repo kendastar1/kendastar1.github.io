@@ -1,0 +1,783 @@
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funcionamiento</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+:root {
+  --primary-green: #4CAF50;
+  --dark-green: #2E7D32;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+  background: var(--dark-green);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.close-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.close-menu::before,
+.close-menu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--white);
+  top: 50%;
+  left: 0;
+}
+
+.close-menu::before {
+  transform: rotate(45deg);
+}
+
+.close-menu::after {
+  transform: rotate(-45deg);
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: #90EE90;
+}
+
+.hero {
+
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--white);
+  background-image: url(imagenes/img.jpg);
+}
+.hero::before {
+  content: ''; /* Necesario para mostrar el pseudo-elemento */
+  position: absolute; /* Posiciona el pseudo-elemento sobre el contenedor */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad del 50% */
+ 
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.btn {
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 2.5rem;
+  background: var(--white);
+  margin-top: -5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  opacity: 0;
+  animation: slideInFromLeft 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.feature-title {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.feature-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.feature-card:hover {
+  background: var(--primary-green);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+.feature-card:hover .feature-icon {
+  fill: var(--white);
+  transform: scale(1.2);
+}
+
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-subtitle {
+  color: var(--white);
+}
+
+.feature-card:hover path {
+  fill: var(--white);
+}
+
+.about-section {
+  padding: 5rem 2rem;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.about-text h2 {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.about-text h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.about-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.about-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.about-button {
+  padding: 1rem 2rem;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.about-image {
+  opacity: 0;
+  animation: slideInFromRight 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: var(--dark-green);
+    flex-direction: column;
+    padding: 80px 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .feature-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero {
+    padding: 1rem;
+    height: 100vh;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+  }
+
+  .about-section {
+    padding: 3rem 1rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-text {
+    text-align: center;
+    padding: 0;
+  }
+  
+  .about-text h2 {
+    font-size: 1.3rem;
+  }
+  
+  .about-text h3 {
+    font-size: 2rem;
+  }
+  
+  .about-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .about-button {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    min-height: 50px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-image {
+    width: 100%;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+    padding-top: 80px;
+  }
+  
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.header {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Degradado negro con opacidad */
+        url(imagenes/img5.jpg); /* Imagen de fondo */
+    background-size: cover; /* Asegúrate de que la imagen cubra todo el contenedor */
+    background-position: top; /* Centra la imagen */
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: white;
+    animation: slideDown 1s ease-out;
+}
+
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Simulador</div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links">
+      <div class="close-menu"></div>
+     <a href="index.html">Inicio</a>
+      <a href="construccion.html">Construcción</a>
+      <a href="Funcionamiento1.html">Funcionamiento</a>
+      <a href="Formula.html">Formula</a>
+      <a href="simulador.html">Simulador</a>
+       <!--<a href="integrantes.html">Integrantes</a>-->
+      
+    </div>
+  </nav>
+ <div class="header" style="padding-top: 150px; padding-bottom: 100px; ">
+    <h1>Funcionamiento de un Cohete de Agua</h1>
+    <p>Física y Principios de Propulsión a Presión</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <img src="imagenes/img4.jpg" width="200" height="150">
+      <h3>Preparación y llenado</h3>
+      <p style="text-align: justify;">Se llena parcialmente una botella (que sirve como el cuerpo del cohete) con agua, aproximadamente entre un tercio y la mitad de su capacidad. El resto de la botella queda lleno de aire.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <img src="imagenes/img5.jpg"  width="200" height="150">
+      <h3>Presurización</h3>
+      <p style="text-align: justify;">Una bomba de aire se usa para aumentar la presión dentro de la botella. El aire comprimido se acumula sobre la superficie del agua. Este aire comprimido actúa como un resorte listo para expandirse y empujar el agua hacia afuera de la botella.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <img src="imagenes/img3.jpg" width="200" height="150">
+      <h3>Lanzamiento</h3>
+      <p style="text-align: justify;">Al liberar la boquilla, el aire comprimido empuja el agua a través de la abertura inferior del cohete con fuerza. La salida rápida del agua genera una reacción que impulsa el cohete hacia arriba, en la dirección opuesta a la salida del agua.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <img src="imagenes/img6.jpg" width="200" height="150">
+      <h3>Despegue y vuelo</h3>
+      <p style="text-align: justify;">El cohete se eleva en el aire impulsado por la fuerza de reacción generada al expulsar el agua. La altura y la distancia que alcanzará el cohete dependen de varios factores, como la cantidad de agua, la presión del aire en el interior, el diseño de la boquilla y el ángulo de lanzamiento.</p>
+    </div>
+  </div>
+
+  <div class="video-section reveal">
+    <h1 class="slide-reveal" style="color: #2e7a54">PODRAS VER UN CORTO VIDEO EXPLICATIVO</h>
+    <p class="zoom-reveal" style="color: 000000">Observa cómo puede funcionar de manera eficiente un cohete de agua a presión.</p>
+    <div class="video-container zoom-reveal">
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/9JOUb8uBFwo" title="Presentación de servicios" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    </div>
+  </div>
+
+  <div class="bottom-section reveal">
+    <h2>Funcionamiento</h2>
+    <p>Los cohetes propulsados a presión con agua son una forma divertida y educativa de demostrar la física, especialmente la tercera ley de Newton. Al llenar una botella de 1.5 a 2 litros con un tercio de agua y aplicar una presión de 70 a 80 psi, se genera un empuje eficaz al liberar el aire comprimido, lo que impulsa el cohete hacia arriba. Estos experimentos son ideales para comprender conceptos de propulsión y dinámica de manera segura. </p>
+    
+    <div class="bottom-grid">
+      <div class="stat-card">
+        <div class="stat-number">500 kPa</div>
+        <div class="stat-label">Máxima Presión de Aire</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">30-40%</div>
+        <div class="stat-label">Cantidad Óptima de Agua</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">1.5-2L</div>
+        <div class="stat-label">Botella</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ideas-section reveal">
+    <h2 class="slide-reveal">Precauciones Importantes</h2>
+    <p class="zoom-reveal">para el lanzamiento de un cohete de agua</p>
+    
+    <div class="ideas-container">
+      <div class="idea-card reveal">
+        <div class="idea-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13h1v6h-1zm0 8h1v2h-1z"/>
+          </svg>
+        </div>
+        <h3>Uso de Protección Personal</h3>
+        <p>Siempre utiliza gafas de seguridad para proteger tus ojos de cualquier posible fragmento o chorro de agua a alta presión que pueda salir disparado durante el lanzamiento.</p>
+      </div>
+      
+      <div class="idea-card reveal">
+        <div class="idea-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 10l-6 18h12l-6-18z" fill="white"/>
+    <path d="M26 28l-10 10h4l6-6z" fill="white"/>
+    <path d="M42 28l10 10h-4l-6-6z" fill="white"/>
+    <path d="M32 50l-6-6h12l-6 6z" fill="white"/>
+    <path d="M32 10v14" stroke="white"/>
+    <path d="M32 50v4" stroke="white"/>
+    <path d="M32 36v4" stroke="white"/>
+    <path d="M30 50h4" stroke="white"/>
+</svg>
+
+        </div>
+        <h3>Lanzamiento en Espacio Abierto</h3>
+        <p>Asegúrate de realizar el lanzamiento en un área amplia y despejada, lejos de personas, animales y objetos, para evitar accidentes y daños.</p>
+      </div>
+      
+      <div class="idea-card reveal">
+        <div class="idea-icon">
+           <svg viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+            <path d="M7 12h2v5H7zm4-7h2v12h-2zm4 4h2v8h-2z"/>
+          </svg>
+        </div>
+        <h3>No Exceder la Presión Recomendada</h3>
+        <p>No apliques más de 480 a 550 kPa en la botella, ya que superar esta presión puede hacer que la botella explote, poniendo en riesgo la seguridad de quienes están cerca. Siempre revisa el estado de la botella antes de usarla.</p>
+      </div>
+    </div>
+  </div>
+</body>
+  <script>
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mouseover', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseout', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal, .zoom-reveal, .slide-reveal');
+      
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  </script>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const closeMenu = document.querySelector('.close-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(46, 125, 50, 0.95)';
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.background = 'var(--dark-green)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    const observerOptions = {
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.about-text h2, .about-text h3, .about-text p, .about-stats, .about-button, .about-image');
+
+    animatedElements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</html>

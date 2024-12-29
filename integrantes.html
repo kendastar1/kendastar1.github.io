@@ -1,0 +1,733 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/style3.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>Integrantes</title>
+<style>
+:root {
+  --primary-green: #4CAF50;
+  --dark-green: #2E7D32;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+  background: var(--dark-green);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.close-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.close-menu::before,
+.close-menu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--white);
+  top: 50%;
+  left: 0;
+}
+
+.close-menu::before {
+  transform: rotate(45deg);
+}
+
+.close-menu::after {
+  transform: rotate(-45deg);
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: #90EE90;
+}
+
+.hero {
+
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: var(--white);
+  background-image: url(imagenes/img.jpg);
+}
+.hero::before {
+  content: ''; /* Necesario para mostrar el pseudo-elemento */
+  position: absolute; /* Posiciona el pseudo-elemento sobre el contenedor */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad del 50% */
+ 
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.btn {
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 2.5rem;
+  background: var(--white);
+  margin-top: -5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  opacity: 0;
+  animation: slideInFromLeft 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.feature-title {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.feature-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.feature-card:hover {
+  background: var(--primary-green);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+.feature-card:hover .feature-icon {
+  fill: var(--white);
+  transform: scale(1.2);
+}
+
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-subtitle {
+  color: var(--white);
+}
+
+.feature-card:hover path {
+  fill: var(--white);
+}
+
+.about-section {
+  padding: 5rem 2rem;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.about-text h2 {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.about-text h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.about-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.about-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.about-button {
+  padding: 1rem 2rem;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+.about-image {
+  opacity: 0;
+  animation: slideInFromRight 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: var(--dark-green);
+    flex-direction: column;
+    padding: 80px 20px;
+    transition: right 0.3s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .feature-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero {
+    padding: 1rem;
+    height: 100vh;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+  }
+
+  .about-section {
+    padding: 3rem 1rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-text {
+    text-align: center;
+    padding: 0;
+  }
+  
+  .about-text h2 {
+    font-size: 1.3rem;
+  }
+  
+  .about-text h3 {
+    font-size: 2rem;
+  }
+  
+  .about-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .about-button {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    min-height: 50px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-image {
+    width: 100%;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+    padding-top: 80px;
+  }
+  
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .hero-section {
+    align-items: flex-end;
+
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Simulador</div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links">
+      <div class="close-menu"></div>
+   <a href="index.html">Inicio</a>
+      <a href="construccion.html">Construcción</a>
+      <a href="Funcionamiento1.html">Funcionamiento</a>
+      <a href="Formula.html">Formula</a>
+      <a href="simulador.html">Simulador</a>
+       <!--<a href="integrantes.html">Integrantes</a>-->
+      
+    </div>
+  </nav>
+ <div class="hero-section">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Nuestros Participantes Destacados</h1>
+            <p class="hero-subtitle">Conoce a los profesionales que están transformando nuestra empresa</p>
+        </div>
+    </div>
+    
+    <h2 class="university-title">Universidad Simón Bolívar</h2>
+    
+    <div class="participants-container">
+        <div class="participant-card" style="animation-delay: 0.1s;">
+            <img class="participant-image" 
+                 alt="Ejecutiva profesional en traje negro, fotografía corporativa elegante" 
+                 src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Kevin Ortiz</h2>
+                <div class="participant-role">Estudiante</div>
+                <p class="participant-description">Descripción</p>
+            </div>
+        </div>
+
+        <div class="participant-card" style="animation-delay: 0.2s;">
+            <img class="participant-image" 
+                 alt="Empresario en traje azul marino, pose profesional" 
+                src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Andres Jaimes</h2>
+                <div class="participant-role">Estudiante</div>
+                 <p class="participant-description">Descripción</p>
+            </div>
+        </div>
+
+        <div class="participant-card" style="animation-delay: 0.3s;">
+            <img class="participant-image" 
+                 alt="Profesional creativa en outfit moderno, ambiente corporativo" 
+                 src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Jeferson Lazaro</h2>
+                <div class="participant-role">Estudiante</div>
+                <p class="participant-description">Descripción</p>
+            </div>
+        </div>
+
+        <div class="participant-card" style="animation-delay: 0.4s;">
+            <img class="participant-image" 
+                 alt="Ejecutivo tecnológico en ambiente moderno" 
+                src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Ronald Acevedo</h2>
+                <div class="participant-role">Estudiante</div>
+                 <p class="participant-description">Descripción</p>
+            </div>
+        </div>
+
+        <div class="participant-card" style="animation-delay: 0.5s;">
+            <img class="participant-image" 
+                 alt="Profesional de finanzas en traje elegante" 
+                src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Felipe Hernandez</h2>
+                <div class="participant-role">Estudiante</div>
+                 <p class="participant-description">Descripción</p>
+            </div>
+        </div>
+
+        <div class="participant-card" style="animation-delay: 0.6s;">
+            <img class="participant-image" 
+                 alt="Líder de marketing en ambiente corporativo moderno" 
+                src="imagenes/user.jpg"
+                 width="250" 
+                 height="250">
+            <div class="participant-info">
+                <h2 class="participant-name">Lina Marcela</h2>
+                <div class="participant-role">Directora</div>
+                <p class="participant-description">Descripción</p>
+        </div>
+    </div>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const closeMenu = document.querySelector('.close-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(46, 125, 50, 0.95)';
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.background = 'var(--dark-green)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    const observerOptions = {
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.about-text h2, .about-text h3, .about-text p, .about-stats, .about-button, .about-image');
+
+    animatedElements.forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</body></html>
